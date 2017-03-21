@@ -32,7 +32,7 @@ var EditorialService = function(){
                 } else {
                     var where = { 
                         name : { 
-                            $like: new RegExp(query,'gi') 
+                            $ilike: '%'+query+'%'
                         } 
                     };
 
@@ -50,11 +50,11 @@ var EditorialService = function(){
             return Model.create(editorial);   
         },
         UpdateEditorial : function(editorialId, newEditorial){
-            return Mode.update()
+            return Mode.update(newEditorial, { where : { ideditoriales : newEditorial }});
         }
     };
 };
 
 
 
-module.exports = CommentService;
+module.exports = EditorialService;

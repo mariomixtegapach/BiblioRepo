@@ -31,10 +31,11 @@ var libros = db.define('libros', {
 	tipo:{
 		type: Sequelize.STRING
 	},
-	editoriales_ideditoriales:{
+	editorialesIdeditoriales:{
 		type: Sequelize.STRING, 
 		primaryKey: true,
-		unique: true
+		unique: true,
+		field: 'editoriales_ideditoriales' 
 	}
 }, {
 	freezeTableName: true

@@ -2,19 +2,22 @@
 var Sequelize = require('sequelize');
 var db = require('../dbo/modules_v2/Dbo-sql');
 
-var libros_has_autores = db.define('libros_has_autores', {
-	libros_idlibros:{
+var librosHasAutores = db.define('libros_has_autores', {
+	librosIdLibros:{
 		type: DataTypes.INTEGER(11), 
 		primaryKey: true,
-		unique: true
+		unique: true,
+		field: 'libros_idlibros' 
 	},
-	autores_idautores:{
+	autoresIdautores:{
 		type: Sequelize.STRING,
 		primaryKey: true,
-		unique: true
+		unique: true,
+		field: 'autores_idautores' 
+
 	}
 }, {
 	freezeTableName: true
 });
 
-module.exports = libros_has_autores;
+module.exports = librosHasAutores;

@@ -18,7 +18,8 @@ var profesores = db.define('profesores', {
 	},
 	usuarios_idusuarios:{
 		type: Sequelize.INTEGER(11), 
-		unique: true
+		unique: true,
+		field: 'usuarios_idusuarios' 
 	}
 }, {
 	freezeTableName: true

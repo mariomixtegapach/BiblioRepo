@@ -16,13 +16,15 @@ var prestamos = db.define('prestamos', {
 	estado:{
 		type: Sequelize.STRING
 	},
-	libros_idlibros:{
+	librosIdlibros:{
 		type: Sequelize.INTEGER(11), 
-		unique: true
+		unique: true,
+		field: 'libros_idlibros' 
 	},
-	usuarios_idusuarios:{
+	usuariosIdusuarios:{
 		type: Sequelize.INTEGER(11), 
-		unique: true
+		unique: true,
+		field: 'usuarios_idusuarios' 
 	}
 }, {
 	freezeTableName: true

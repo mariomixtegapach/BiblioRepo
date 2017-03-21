@@ -3,9 +3,10 @@ var Sequelize = require('sequelize');
 var db = require('../dbo/modules_v2/Dbo-sql');
 
 var alumnos = db.define('alumnos', {
-	id_alumno:{
+	idAlumno:{
 		type: DataTypes.INTEGER(11), 
-		primaryKey: true
+		primaryKey: true,
+		field: 'id_alumno' 
 	},
 	matricula:{
 		type: Sequelize.STRING(45)
@@ -16,12 +17,14 @@ var alumnos = db.define('alumnos', {
 	apellido:{
 		type: Sequelize.STRING
 	},
-	usuarios_idusuarios:{
+	usuariosIdusuarios:{
 		type: Sequelize.INTEGER(11), 
-		unique: true
+		unique: true,
+		field: 'usuarios_idusuarios' 
 	}
 }, {
 	freezeTableName: true
 });
+
 
 module.exports = alumnos;
