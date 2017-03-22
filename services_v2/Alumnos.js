@@ -6,7 +6,7 @@ var q = require('q');
 var ObjectId = require('mongodb').ObjectID;
 
 var AlumnoService = function(){
-   
+
     return {
         GetAlumnoById : function(idAlumno){
             var defer = q.defer();
@@ -21,13 +21,28 @@ var AlumnoService = function(){
                 }).then(defer.resolve, defer.reject)
             }
 
-            return defer.promise;   
+            return defer.promise;
+        },
+        GetAlumnoByUserId : function(userId){
+            var defer = q.defer();
+
+            if(typeof idAlumno !== 'number') {
+                defer.reject(new Error('editorialId debe ser una cadena'));
+            } else {
+                Model.findAll({
+                    where : {
+                        usuarios_idusuarios : userId
+                    }
+                }).then(defer.resolve, defer.reject)
+            }
+
+            return defer.promise;
         },
         SaveAlumno : function(alumno){
              return Model.create(alumno);
         },
         UpdateAlumno : function(alumno, idAlumno){
-            return Model.update(alumno, { where : { idalumnos : idAlumno } } );   
+            return Model.update(alumno, { where : { idalumnos : idAlumno } } );
         },
         DeleteAlumno : function(idAlumno){
             return Model.destroy({ where : { idalumnos : idAlumno }});
