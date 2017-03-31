@@ -4,7 +4,7 @@ var db = require('../dbo/modules_v2/Dbo-sql');
 
 var profesores = db.define('profesores', {
 	idprofesores:{
-		type: DataTypes.INTEGER(11), 
+		type: Sequelize.INTEGER(11), 
 		primaryKey: true
 	},
 	numColaborador:{

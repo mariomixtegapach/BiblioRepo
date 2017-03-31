@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var alumnoService = require('../services_v2/Alumnos');
-var common = require('../modules_v2/Dbo.common');
+var common = require('../dbo/modules_v2/Dbo.common');
 
 router.get('/:idAlumno', function(req, res, next) {
   if(req.params.idAlumno){

@@ -1,6 +1,5 @@
 //var Dao = require('../dbo/modules_v2/Dbo');
 var Model = require('../models/profesores');
-var Collection = require('./../dbo/collections');
 var common = require('../dbo/modules_v2/Dbo.common');
 var q = require('q');
 var ObjectId = require('mongodb').ObjectID;

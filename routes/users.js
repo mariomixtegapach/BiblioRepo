@@ -9,9 +9,6 @@ router.get('/', function(req, res, next) {
 
 });
 
-router.get('/', function(req, res, next) {
-
-});
 
 router.get('/users/:type/:userName', function(req, res, next) {
 
@@ -19,13 +16,13 @@ router.get('/users/:type/:userName', function(req, res, next) {
     if(req.params.type === 'alumno'){
       alumnosService.GetAlumnoByUserId(user.idusuarios).then(function(alumno){
         res.json(alumno);
-      }), function(err){
+      }, function(err){
         res.status.error({ error: true, message : err.message});
       });
     } else if(req.params.type === 'profesor'){
       profesoresService.ReadProfesorByUserId(user.idusuarios).then(function(profesor){
         res.json(profesor);
-      }), function(err){
+      }, function(err){
         res.status.error({ error: true, message : err.message});
       });
     }

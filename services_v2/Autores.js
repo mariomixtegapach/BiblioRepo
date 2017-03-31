@@ -1,5 +1,4 @@
 var Model = require('../models/autores');
-var Collection = require('./../dbo/collections');
 var common = require('../dbo/modules_v2/Dbo.common');
 var q = require('q');
 var ObjectId = require('mongodb').ObjectID;

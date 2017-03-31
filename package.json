@@ -28,6 +28,7 @@
     "mysql": "^2.13.0",
     "mysql2": "^1.2.0",
     "sequelize": "^3.30.2",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "q":"latest"
   }
 }
