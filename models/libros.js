@@ -32,7 +32,7 @@ var libros = db.define('libros', {
 		type: Sequelize.STRING
 	},
 	editorialesIdeditoriales:{
-		type: Sequelize.STRING, 
+		type: Sequelize.INTEGER(11), 
 		primaryKey: true,
 		unique: true,
 		field: 'editoriales_ideditoriales' 

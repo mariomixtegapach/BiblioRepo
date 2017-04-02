@@ -65,6 +65,22 @@ var PrestamosService = function(){
             }, defer.reject);
 
             return defer.promise;
+        },
+        Get : function(pageOptions){
+            var defer = q.defer();
+
+               
+                    var where = {};
+
+                    Model.findAll({ 
+                        where : where,
+                         limit : pageOptions.pageSize, 
+                         offset: pageOptions.pageSize * (pageOptions.page-1) 
+                     })
+                    .then(defer.resolve, defer.reject);
+                
+
+                return defer.promise;   
         }
     };
 };

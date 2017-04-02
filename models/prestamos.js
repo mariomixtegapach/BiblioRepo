@@ -5,6 +5,7 @@ var db = require('../dbo/modules_v2/Dbo-sql');
 var prestamos = db.define('prestamos', {
 	idprestamos:{
 		type: Sequelize.INTEGER(11), 
+		autoIncrement: true,
 		primaryKey: true
 	},
 	fechaIni:{
@@ -16,15 +17,12 @@ var prestamos = db.define('prestamos', {
 	estado:{
 		type: Sequelize.STRING
 	},
-	librosIdlibros:{
-		type: Sequelize.INTEGER(11), 
-		unique: true,
-		field: 'libros_idlibros' 
+	libros_idlibros:{
+		type: Sequelize.INTEGER(11)
 	},
-	usuariosIdusuarios:{
-		type: Sequelize.INTEGER(11), 
-		unique: true,
-		field: 'usuarios_idusuarios' 
+	usuarios_idusuarios:{
+		type: Sequelize.INTEGER(11) 
+		
 	}
 }, {
 	freezeTableName: true,

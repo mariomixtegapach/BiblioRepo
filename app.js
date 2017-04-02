@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/assets',express.static(path.join(__dirname, 'view','assets')));
 
 app.use('/', index);
-//app.use('/alumnos', alumnos);
+app.use('/alumnos', alumnos);
 //app.use('/users', users);
 app.use('/books',books);
 app.use('/editorials', edito);

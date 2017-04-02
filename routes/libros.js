@@ -81,10 +81,14 @@ router.delete('/id/:id', function(req, res, next){
 
 router.put('/', function(req, res, next){
   var newData = req.body;
-
+  newData.editoriales_ideditoriales = +newData.editoriales_ideditoriales;
+  newData.editorialesIdeditoriales  = +newData.editoriales_ideditoriales;
+  newData.cantidadDisp = newData.cantidadTotal;
   var wrapError = function(err){
     onError(res,err);
   }
+
+  console.log(req.body)
 
   service.Save(newData)
     .then(function(done){
