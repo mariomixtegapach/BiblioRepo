@@ -11,7 +11,8 @@ var editoriales = db.define('editoriales', {
 		type: Sequelize.STRING
 	}
 }, {
-	freezeTableName: true
+	freezeTableName: true,
+	 timestamps: false
 });
 
 module.exports = editoriales;

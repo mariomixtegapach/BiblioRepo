@@ -4,16 +4,23 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var ejs = require('ejs');
 
 var alumnos = require('./routes/alumnos');
 var users = require('./routes/users');
+var index = require('./routes/index')
+var books = require('./routes/libros');
+var edito = require('./routes/editorials');
+var authors = require('./routes/authors');
+var prestamos = require('./routes/apartados');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'view/pages'));
 
+app.set('view engine', 'html');
+app.engine('html', ejs.renderFile);
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -21,9 +28,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/assets',express.static(path.join(__dirname, 'view','assets')));
 
-app.use('/alumnos', alumnos);
-app.use('/users', users);
+app.use('/', index);
+//app.use('/alumnos', alumnos);
+//app.use('/users', users);
+app.use('/books',books);
+app.use('/editorials', edito);
+app.use('/authors', authors);
+app.use('/prest',prestamos)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

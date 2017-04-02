@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var LibroService = require('../services_v2/Libros.js')
+var EditorialsServices = require('../services_v2/Editoriales.js')
 
-var service = new LibroService();
-
+var service = new EditorialsServices();
 
 function onError(res, err){
   console.log(err);

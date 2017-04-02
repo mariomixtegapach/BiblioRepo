@@ -14,7 +14,8 @@ var usuarios = db.define('usuarios', {
 		type: Sequelize.STRING(45)
 	}
 }, {
-	freezeTableName: true
+	freezeTableName: true,
+	 timestamps: false
 });
 
 module.exports = usuarios;

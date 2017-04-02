@@ -27,7 +27,8 @@ var prestamos = db.define('prestamos', {
 		field: 'usuarios_idusuarios' 
 	}
 }, {
-	freezeTableName: true
+	freezeTableName: true,
+	 timestamps: false
 });
 
 module.exports = prestamos;

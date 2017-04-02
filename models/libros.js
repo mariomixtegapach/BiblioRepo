@@ -38,7 +38,8 @@ var libros = db.define('libros', {
 		field: 'editoriales_ideditoriales' 
 	}
 }, {
-	freezeTableName: true
+	freezeTableName: true,
+	 timestamps: false
 });
 
 module.exports = libros;

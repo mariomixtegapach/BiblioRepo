@@ -7,11 +7,11 @@ var ObjectId = require('mongodb').ObjectID;
 var LibroService = function(){
    
     return {
-        GetLibroById : function(bookId){
+        GetById : function(bookId){
             var defer = q.defer();
 
-            if(typeof bookId !== 'number') {
-                defer.reject(new Error('editorialId debe ser una cadena'));
+            if(typeof +bookId !== 'number') {
+                defer.reject(new Error('bookId debe ser una cadena'));
             } else {
 
                 Model.findAll({
@@ -23,7 +23,7 @@ var LibroService = function(){
 
             return defer.promise;   
         },
-        QueryBook : function(query, pageOptions){
+        Query : function(query, pageOptions){
             var defer = q.defer();
 
                 if(typeof query !== 'string') {
@@ -53,31 +53,46 @@ var LibroService = function(){
 
             return defer.promise;   
         },
-        SaveBook : function(book){
-            return Model.create(book);   
-        },
-        UpdateBook : function(bookId, newBook){
-            return Mode.update(newBook, { where : { idlibros : bookId }});
-        },
-        GetBookOcuppiedDates : function(bookId){
-            
+        Get : function(pageOptions){
             var defer = q.defer();
 
-            var book = {};
+                
+                    var where = {};
 
-            this.GetLibroById(bookId).then(function(books){
-                if(books && books.length){
-                    book.info = books
+                    Model.findAll({ 
+                         where : where,
+                         limit : pageOptions.pageSize, 
+                         offset: pageOptions.pageSize * (pageOptions.page-1) 
+                     })
+                    .then(defer.resolve, defer.reject);
+                
 
-                    Model.findAll({
-                        where : 
-                    })
-
+            return defer.promise;   
+        },
+        Save : function(book){
+            return Model.create(book);   
+        },
+        Update : function(bookId, newBook){
+            var defer = q.defer();
+            Model.find({ where: { idlibros: bookId } })
+              .then(function (data) {
+                // Check if record exists in db
+                if (data) {
+                  data.updateAttributes(newData)
+                  .then(defer.resolve, defer.reject)
+                } else {
+                    defer.reject(new Error());
                 }
-            }, defer.reject);
+              }, function(err){
+                    defer.reject(new Error());
+              })
 
-            return defer.promise;
+              return defer.promise;
 
+            //return Mode.update(newBook, { where : { idlibros : bookId }});
+        },
+        Delete : function(id){
+            return Model.destroy({where : {idlibros : id}})
         }
     };
 };

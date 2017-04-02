@@ -23,7 +23,8 @@ var alumnos = db.define('alumnos', {
 		field: 'usuarios_idusuarios' 
 	}
 }, {
-	freezeTableName: true
+	freezeTableName: true,
+	 timestamps: false
 });
 
 

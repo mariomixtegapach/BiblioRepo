@@ -11,7 +11,8 @@ var autores = db.define('autores', {
 		type: Sequelize.STRING
 	}
 }, {
-	freezeTableName: true
+	freezeTableName: true,
+	 timestamps: false
 });
 
 module.exports = autores;

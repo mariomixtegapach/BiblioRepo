@@ -17,7 +17,8 @@ var librosHasAutores = db.define('libros_has_autores', {
 
 	}
 }, {
-	freezeTableName: true
+	freezeTableName: true,
+	 timestamps: false
 });
 
 module.exports = librosHasAutores;

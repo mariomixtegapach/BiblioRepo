@@ -9,11 +9,11 @@ var PrestamosService = function(){
     return {
         GetAllPrestamosByBookId : function(bookId){
             var defer = q.defer();
-            Model.findAll(
+            Model.findAll({
               where: {
                 libros_idlibros: bookId
               }
-            ).then(defer.resolve, defer.reject);
+            }).then(defer.resolve, defer.reject);
 
             return defer.promise;
         },
@@ -22,7 +22,7 @@ var PrestamosService = function(){
             Model.findAll({
                 where : {
                     fechaFin:{
-                        $lt: Date.now();
+                        $lt: Date.now()
                     }
                 }
             }).then(defer.resolve, defer.reject);
@@ -55,14 +55,14 @@ var PrestamosService = function(){
                 where: {
                     idPrestamos : prestamoId
                 }
-            }).on('success', function(prestamo){
+            }).then( function(prestamo){
                 if(prestamo){
                     prestamo.updateAttributes({
                         estado: newState
-                    }).success(function(){});
+                    }).then(defer.resolve, defer.reject);
 
                 }
-            }).then(defer.resolve, defer.reject);
+            }, defer.reject);
 
             return defer.promise;
         }

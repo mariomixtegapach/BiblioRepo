@@ -22,7 +22,8 @@ var profesores = db.define('profesores', {
 		field: 'usuarios_idusuarios' 
 	}
 }, {
-	freezeTableName: true
+	freezeTableName: true,
+	 timestamps: false
 });
 
 module.exports = profesores;

@@ -6,10 +6,10 @@ var ObjectId = require('mongodb').ObjectID;
 var AutoresService = function(){
    
     return {
-        GetAutorById : function(autorId){
+        GetById : function(autorId){
             var defer = q.defer();
 
-            if(typeof autorId !== 'number') {
+            if(typeof +autorId !== 'number') {
                 defer.reject(new Error('editorialId debe ser una cadena'));
             } else {
 
@@ -22,14 +22,52 @@ var AutoresService = function(){
 
             return defer.promise;   
         },
-        SaveAutor : function(autor){
+        Save : function(autor){
             return Model.create(autor);
         },
-        DeleteAutor : function(autorId){
+        Delete : function(autorId){
             return Model.destroy({ where : { idautores : autorId } });
         },
-        UpdateAutor : function(autorId, autor){
+        Update : function(autorId, autor){
             return Mode.update(autor, { where : { idautores : autorId }});
+        },
+        Query : function(query, pageOptions){
+             var defer = q.defer();
+
+                if(typeof query !== 'string') {
+                    defer.reject(new Error('query debe ser una cadena'));
+                } else {
+                    var where = { 
+                        name : { 
+                            $ilike: '%'+query+'%'
+                        } 
+                    };
+
+                    Model.findAll({ 
+                        where : where,
+                         limit : pageOptions.pageSize, 
+                         offset: pageOptions.pageSize * (pageOptions.page-1) 
+                     })
+                    .then(defer.resolve, defer.reject);
+                }
+
+                return defer.promise;   
+        },
+        Get : function(pageOptions){
+            var defer = q.defer();
+
+                
+                    var where = {};
+
+                    Model.findAll({ 
+                         where : where,
+                         limit : pageOptions.pageSize, 
+                         offset: pageOptions.pageSize * (pageOptions.page-1) 
+                     })
+                    .then(defer.resolve, defer.reject);
+                
+
+            return defer.promise;   
         }
     };
 };

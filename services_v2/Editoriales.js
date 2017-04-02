@@ -7,10 +7,10 @@ var ObjectId = require('mongodb').ObjectID;
 var EditorialService = function(){
    
     return {
-        GetEditorialById : function(editorialId){
+        GetById : function(editorialId){
             var defer = q.defer();
 
-            if(typeof editorialId !== 'number') {
+            if(typeof +editorialId !== 'number') {
                 defer.reject(new Error('editorialId debe ser una cadena'));
             } else {
 
@@ -23,7 +23,7 @@ var EditorialService = function(){
 
             return defer.promise;   
         },
-        QueryEditorial : function(query, pageOptions){
+        Query : function(query, pageOptions){
              var defer = q.defer();
 
                 if(typeof query !== 'string') {
@@ -39,17 +39,51 @@ var EditorialService = function(){
                         where : where,
                          limit : pageOptions.pageSize, 
                          offset: pageOptions.pageSize * (pageOptions.page-1) 
-                     } , pageOptions)
+                     })
                     .then(defer.resolve, defer.reject);
                 }
 
                 return defer.promise;   
         },
-        SaveEditorial : function(editorial){
+        Save : function(editorial){
             return Model.create(editorial);   
         },
-        UpdateEditorial : function(editorialId, newEditorial){
-            return Mode.update(newEditorial, { where : { ideditoriales : newEditorial }});
+        Update : function(editorialId, newData){
+            var defer = q.defer();
+            Model.find({ where: { ideditoriales: editorialId } })
+              .then(function (data) {
+                // Check if record exists in db
+                if (data) {
+                  data.updateAttributes(newData)
+                  .then(defer.resolve, defer.reject)
+                } else {
+                    defer.reject(new Error());
+                }
+              }, function(err){
+                    defer.reject(new Error());
+              })
+
+              return defer.promise;
+           // return Model.update(newEditorial, { where : { ideditoriales : newEditorial }});
+        },
+        Get : function(pageOptions){
+            var defer = q.defer();
+
+               
+                    var where = {};
+
+                    Model.findAll({ 
+                        where : where,
+                         limit : pageOptions.pageSize, 
+                         offset: pageOptions.pageSize * (pageOptions.page-1) 
+                     })
+                    .then(defer.resolve, defer.reject);
+                
+
+                return defer.promise;   
+        },
+        Delete : function(id){
+            return Model.destroy({where : {ideditoriales : id}})
         }
     };
 };
