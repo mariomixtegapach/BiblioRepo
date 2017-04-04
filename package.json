@@ -24,11 +24,13 @@
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^2.0.4",
+    "mongodb": "^2.2.25",
     "morgan": "~1.6.1",
     "mysql": "^2.13.0",
     "mysql2": "^1.2.0",
+    "q": "latest",
     "sequelize": "^3.30.2",
     "serve-favicon": "~2.3.0",
-    "q":"latest"
+    "underscore": "^1.8.3"
   }
 }
